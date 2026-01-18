@@ -1,0 +1,16 @@
+QUICK STEPS TO PUSH WITH GITHUB DESKTOP:
+
+1. Open GitHub Desktop app
+2. Click "File" → "Add Local Repository"
+3. Click "Choose..." and select this folder:
+   /Users/apriljashmeranting/Desktop/untitled folder
+4. Click "Add Repository"
+5. If it asks, select "I already have a repository..."
+6. At the top, you'll see "Publish repository" button - CLICK IT
+7. Repository name: millionaire-game
+8. Check "Keep this code private" if you want it private (or leave unchecked for public)
+9. Click "Publish Repository"
+
+That's it! Your code will be pushed to:
+https://github.com/iamjashmer/millionaire-game
+
