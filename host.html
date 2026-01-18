@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host - Who Wants to Be a Millionaire</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .host-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+        }
+        .main-panel {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 30px;
+        }
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .info-box {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .info-box h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        .answer-status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .answer-status.waiting {
+            background: rgba(255, 193, 7, 0.3);
+            border: 2px solid #FFC107;
+            color: #FFC107;
+        }
+        .answer-status.selected {
+            background: rgba(33, 150, 243, 0.3);
+            border: 2px solid #2196F3;
+            color: #2196F3;
+        }
+        .answer-status.confirmed {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+        }
+        .contestant-answer-display {
+            font-size: 2em;
+            padding: 20px;
+            background: rgba(33, 150, 243, 0.2);
+            border: 3px solid #2196F3;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .action-buttons-host {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .host-btn {
+            padding: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 3px solid;
+            transition: all 0.3s;
+        }
+        .host-btn.confirm {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4CAF50;
+            color: #4CAF50;
+        }
+        .host-btn.confirm:hover:not(:disabled) {
+            background: #4CAF50;
+            color: white;
+        }
+        .host-btn.reject {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: #f44336;
+            color: #f44336;
+        }
+        .host-btn.reject:hover:not(:disabled) {
+            background: #f44336;
+            color: white;
+        }
+        .host-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="host-container">
+        <div class="main-panel">
+            <h2 style="color: #FFD700; margin-bottom: 20px;">Host Control Panel</h2>
+            
+            <div class="question-section">
+                <div class="question-number">Question <span id="questionNumber">-</span></div>
+                <div class="question-text" id="questionText">Waiting for game to start...</div>
+            </div>
+
+            <div class="answers-section" id="answersSection">
+                <!-- Answers will be displayed here -->
+            </div>
+
+            <div class="contestant-answer-display" id="contestantAnswerDisplay">
+                No answer selected yet
+            </div>
+
+            <div class="action-buttons-host">
+                <button class="host-btn confirm" id="confirmBtn" onclick="confirmAnswer()" disabled>
+                    ✓ Confirm Final Answer
+                </button>
+                <button class="host-btn reject" id="rejectBtn" onclick="rejectAnswer()" disabled>
+                    ✗ Reject / Ask to Reselect
+                </button>
+                <button class="host-btn confirm" id="revealBtn" onclick="revealAnswer()" disabled>
+                    🔓 Reveal Answer
+                </button>
+            </div>
+        </div>
+
+        <div class="side-panel">
+            <div class="info-box">
+                <h3>Contestant Status</h3>
+                <div class="answer-status waiting" id="contestantStatus">
+                    Waiting for answer...
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>Prize Information</h3>
+                <div class="prize-amount" id="currentPrize" style="font-size: 1.5em; margin: 10px 0;">$0</div>
+                <div class="prize-amount guaranteed" id="guaranteedPrize" style="font-size: 1.2em;">Guaranteed: $0</div>
+            </div>
+
+            <div class="info-box">
+                <h3>Lifelines Used</h3>
+                <div id="lifelinesStatus">
+                    <p style="margin: 5px 0;">50:50: <span id="lifeline5050">Available</span></p>
+                    <p style="margin: 5px 0;">Phone: <span id="lifelinePhone">Available</span></p>
+                    <p style="margin: 5px 0;">Audience: <span id="lifelineAudience">Available</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="gameState.js"></script>
+    <script src="host.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Wants to Be a Millionaire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="left-panel">
+            <div class="prize-ladder">
+                <h2>Prize Ladder</h2>
+                <div class="prize-list" id="prizeList">
+                    <!-- Prize amounts will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="lifelines">
+                <h2>Lifelines</h2>
+                <div class="lifeline-buttons">
+                    <button class="lifeline" id="fiftyFifty" onclick="useLifeline('fiftyFifty')">
+                        <span class="lifeline-icon">50:50</span>
+                    </button>
+                    <button class="lifeline" id="phoneFriend" onclick="useLifeline('phoneFriend')">
+                        <span class="lifeline-icon">📞</span>
+                        Phone a Friend
+                    </button>
+                    <button class="lifeline" id="askAudience" onclick="useLifeline('askAudience')">
+                        <span class="lifeline-icon">👥</span>
+                        Ask the Audience
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="center-panel">
+            <div class="question-section">
+                <div class="question-number">Question <span id="questionNumber">1</span></div>
+                <div class="question-text" id="questionText">
+                    <!-- Question will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="answers-section">
+                <button class="answer-btn" id="answerA" onclick="selectAnswer('A')">
+                    <span class="answer-label">A:</span>
+                    <span class="answer-text" id="textA"></span>
+                </button>
+                <button class="answer-btn" id="answerB" onclick="selectAnswer('B')">
+                    <span class="answer-label">B:</span>
+                    <span class="answer-text" id="textB"></span>
+                </button>
+                <button class="answer-btn" id="answerC" onclick="selectAnswer('C')">
+                    <span class="answer-label">C:</span>
+                    <span class="answer-text" id="textC"></span>
+                </button>
+                <button class="answer-btn" id="answerD" onclick="selectAnswer('D')">
+                    <span class="answer-label">D:</span>
+                    <span class="answer-text" id="textD"></span>
+                </button>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn" id="finalAnswerBtn" onclick="submitFinalAnswer()" disabled>Final Answer</button>
+                <button class="action-btn quit-btn" onclick="quitGame()">Walk Away</button>
+            </div>
+
+            <div id="lifelineResult" class="lifeline-result"></div>
+        </div>
+
+        <div class="right-panel">
+            <div class="current-prize">
+                <h3>Current Prize</h3>
+                <div class="prize-amount" id="currentPrize">$0</div>
+            </div>
+            <div class="guaranteed-prize">
+                <h3>Guaranteed Prize</h3>
+                <div class="prize-amount guaranteed" id="guaranteedPrize">$0</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="correctAnswerModal" class="modal">
+        <div class="modal-content celebration">
+            <h2>🎉 Correct Answer! 🎉</h2>
+            <p>Congratulations! You've won:</p>
+            <div class="final-prize" id="prizeWon">$0</div>
+            <button class="action-btn" onclick="proceedToNextQuestion()">Continue</button>
+        </div>
+    </div>
+
+    <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+            <h2 id="gameOverTitle">Game Over</h2>
+            <p id="gameOverMessage"></p>
+            <div class="final-prize" id="finalPrize">$0</div>
+            <button class="action-btn" onclick="resetGame()">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
